@@ -1,0 +1,21 @@
+version: "3"
+services:
+    openvpn-as:
+        image: openvpn/openvpn-as:2.13.0-c7623b5a-Ubuntu22
+        restart: always
+        container_name: openvpn-as
+        cap_add:
+            - NET_ADMIN
+        ports:
+            - 943:943
+            - 9443:9443
+            - 1194:1194/udp
+            - 1194:1194
+        volumes:
+            - './openvpnb:/openvpn'
+            - './pythonb/pyovpn-2.0-py3.10.egg:/usr/local/openvpn_as/lib/python/pyovpn-2.0-py3.10.egg'
+#        image: ghcr.io/openvpn/openvpn-as
+volumes:
+  openvpnb:
+  pythonb:
+
